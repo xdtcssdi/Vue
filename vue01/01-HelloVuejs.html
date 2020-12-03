@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .activate{
+        color: red
+    }
+</style>
+<body>
+
+<div id="app">
+
+    <h1>{{message}}</h1>
+    <h1 v-once>{{message}}</h1>
+
+    <ul>
+        <li v-for="item in movies">
+            {{item}}
+        </li>
+    </ul>
+
+    <h1>当前技术{{counter}}</h1>
+    <!--    <button v-on:click="counter++">+</button>-->
+    <!--    <button v-on:click="counter&#45;&#45;"></button>-->
+    <!--    -->
+
+    <!--    <button v-on:click="add">+</button>-->
+    <!--    <button v-on:click="sub">-</button>-->
+    <!--    简写-->
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+
+    <!--    v-bind属性-->
+    <a v-bind:href="url">vbind：</a>
+    <a :href="url">vbind：</a>
+    <img :src="imgurl"/>
+
+    <!--    class=默认类， v-bind:class动态绑定类，字典对象-->
+    <h2 class="hhh" :class="{activate:isActivate, line: isLine}">class</h2>
+</div>
+
+
+<script src="js/vue.js"></script>
+<script>
+    //let 变量
+    //const 常亮
+    //浏览器执行代码的流程∶
+    //执行到显然出对应的HTML
+    //执行创建Vue实例，并且对原HTML进行解析和修改。
+    const obj = {
+        isActivate:true,
+        isLine:false,
+        message: 'Hello',
+        movies: ['aa', 'bb', 'cc'],
+        counter: 0,
+        url:'https://blog.csdn.net/devil_bye/article/details/80752529',
+        imgurl:'https://img-blog.csdn.net/20180620205406551?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RldmlsX2J5ZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70'
+    };
+    const app = new Vue({
+        el: '#app', //挂载要管理的元素
+        data: obj,
+        methods: {
+            add: function () {
+                this.counter++;
+            },
+            sub: function () {
+                this.counter--;
+            }
+        }
+    });
+</script>
+</body>
+</html>
